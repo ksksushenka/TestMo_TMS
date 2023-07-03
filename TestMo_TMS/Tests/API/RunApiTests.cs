@@ -1,4 +1,5 @@
 ﻿using Allure.Commons;
+using NLog;
 using NUnit.Allure.Attributes;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace TestMo_TMS.Tests.API
 {
     public class RunApiTests : BaseApiTest
     {
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
         public Run expectedRun1 = TestDataHelper.GetTestRun("GetRun.json");
         public Run expectedRun2 = TestDataHelper.AddTestRun("CreateRun.json");
 
@@ -27,6 +30,8 @@ namespace TestMo_TMS.Tests.API
         public void SuccessGetRun()
         {
             var actualRun = _runService.GetRun(expectedRun1.Id);
+            _logger.Info("Actual Run: " + actualRun);
+            _logger.Info("Expected Run: " + expectedRun1);
 
             Assert.Multiple(() =>
             {
@@ -47,6 +52,8 @@ namespace TestMo_TMS.Tests.API
         public void SuccessAddRun()
         {
             var actualRun = _runService.AddRun(expectedRun2.Name, expectedRun2.Source, expectedRun2.ProjectId);
+            _logger.Info("Actual Run: " + actualRun);
+            _logger.Info("Expected Run: " + expectedRun2);
 
             Assert.That(actualRun.StatusCode.ToString(), Is.EqualTo("OK"));
         }

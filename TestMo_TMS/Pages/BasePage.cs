@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NLog;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace TestMo_TMS.Pages
 {
     public abstract class BasePage
     {
+        protected static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         protected IWebDriver Driver;
         protected WaitService WaitService;
 

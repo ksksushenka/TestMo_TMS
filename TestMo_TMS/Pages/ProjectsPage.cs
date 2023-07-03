@@ -31,9 +31,11 @@ namespace TestMo_TMS.Pages
 
         public ProjectsPage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl)
         {
+            _logger.Info("The Project page is opened.");
         }
         public ProjectsPage(IWebDriver driver) : base(driver, false)
         {
+            _logger.Info("The Project page is opened.");
         }
 
         public override bool IsPageOpened()

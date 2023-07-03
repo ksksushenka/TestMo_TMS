@@ -4,11 +4,14 @@ using TestMo_TMS.Utilites.Helpers;
 using RestSharp;
 using Allure.Commons;
 using NUnit.Allure.Attributes;
+using NLog;
 
 namespace TestMo_TMS.Tests.API
 {
     public class ProjectApiTests : BaseApiTest
     {
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
         public Project expectedProject1 = TestDataHelper.GetTestProject("GetProject.json");
         public Project expectedProject2 = TestDataHelper.GetTestProject("GetInvalidProject.json");
 
@@ -24,6 +27,8 @@ namespace TestMo_TMS.Tests.API
         public void SuccessGetProject()
         {
             var actualProject = _projectService.GetProject(expectedProject1.Id);
+            _logger.Info("Actual Project: " + actualProject);
+            _logger.Info("Expected Project: " + expectedProject1);
 
             Assert.Multiple(() =>
             {
@@ -45,6 +50,8 @@ namespace TestMo_TMS.Tests.API
         {
             var expectedMessage = "The project does not exist or you do not have the permissions to access it.";
             var actualProject = _projectService.GetProject(expectedProject2.Id);
+            _logger.Info("Actual Project: " + actualProject);
+            _logger.Info("Expected Project: " + expectedProject2);
 
             Assert.That(actualProject.Message, Is.EqualTo(expectedMessage));
         }
