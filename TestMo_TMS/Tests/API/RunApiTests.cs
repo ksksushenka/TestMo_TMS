@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Allure.Commons;
+using NUnit.Allure.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +15,15 @@ namespace TestMo_TMS.Tests.API
         public Run expectedRun1 = TestDataHelper.GetTestRun("GetRun.json");
         public Run expectedRun2 = TestDataHelper.AddTestRun("CreateRun.json");
 
-        [Test]
+        [Test(Description = "Success Get Run")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Kseniya")]
+        [AllureSuite("SuccessGetRun")]
+        [AllureSubSuite("InvalidGetProject")]
+        [AllureIssue("TMS-1")]
+        [AllureTms("TMS-2")]
+        [AllureTag("Smoke")]
+        [AllureLink("https://teachmeskills.testmo.net/")]
         public void SuccessGetRun()
         {
             var actualRun = _runService.GetRun(expectedRun1.Id);
@@ -25,7 +35,15 @@ namespace TestMo_TMS.Tests.API
             });
         }
 
-        [Test]
+        [Test(Description = "Success Add Run")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Kseniya")]
+        [AllureSuite("SuccessAddRun")]
+        [AllureSubSuite("InvalidGetProject")]
+        [AllureIssue("TMS-1")]
+        [AllureTms("TMS-2")]
+        [AllureTag("Smoke")]
+        [AllureLink("https://teachmeskills.testmo.net/")]
         public void SuccessAddRun()
         {
             var actualRun = _runService.AddRun(expectedRun2.Name, expectedRun2.Source, expectedRun2.ProjectId);

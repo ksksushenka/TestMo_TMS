@@ -1,0 +1,10 @@
+{
+  "allure": {
+    "directory": "allure-results",
+    "links": [
+      "{links}",
+      "https://teachmeskills.testmo.net/{issue}",
+      "https://example.org/{tms}"
+    ]
+  }
+}
