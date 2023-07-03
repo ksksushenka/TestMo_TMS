@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Allure.Commons;
+using NUnit.Allure.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +19,15 @@ namespace TestMo_TMS.Tests.UI
             LoginPage.TryToLogin(Configurator.Admin);
         }
 
-        [Test]
+        [Test(Description = "Set invalid data in name's field")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Kseniya")]
+        [AllureSuite("PassedSuite")]
+        [AllureSubSuite("InvalidDataInNameField")]
+        [AllureIssue("TMS-1")]
+        [AllureTms("TMS-2")]
+        [AllureTag("Smoke")]
+        [AllureLink("https://teachmeskills.testmo.net/")]
         public void InvalidDataInNameField()
         {
             string expectedMessage = "The name field is required.";
@@ -35,8 +45,16 @@ namespace TestMo_TMS.Tests.UI
             Assert.That(actualMessage, Is.EqualTo(expectedMessage));
         }
 
-        [Test]
-        public void InvalidDataInSymmaryField()
+        [Test(Description = "Set invalid data in summary's field")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Kseniya")]
+        [AllureSuite("PassedSuite")]
+        [AllureSubSuite("InvalidDataInSymmaryField")]
+        [AllureIssue("TMS-1")]
+        [AllureTms("TMS-2")]
+        [AllureTag("Smoke")]
+        [AllureLink("https://teachmeskills.testmo.net/")]
+        public void InvalidDataInSummaryField()
         {
             var expectedSummary = "Check 81 symbols. Check 81 symbols. Check 81 symbols. Check 81 symbols. !@#$%^&*";
             var actualSummary = "Check 81 symbols. Check 81 symbols. Check 81 symbols. Check 81 symbols. !@#$%^&*1";
@@ -55,7 +73,15 @@ namespace TestMo_TMS.Tests.UI
             });
         }
 
-        [Test]
+        [Test(Description = "Check a bug")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Kseniya")]
+        [AllureSuite("PassedSuite")]
+        [AllureSubSuite("CheckABug")]
+        [AllureIssue("TMS-1")]
+        [AllureTms("TMS-2")]
+        [AllureTag("Smoke")]
+        [AllureLink("https://teachmeskills.testmo.net/")]
         public void CheckABug()
         {
             Project project = new ProjectBuilder()

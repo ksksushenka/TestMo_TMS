@@ -1,5 +1,7 @@
-﻿using AngleSharp.Html;
+﻿using Allure.Commons;
+using AngleSharp.Html;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -20,7 +22,15 @@ namespace TestMo_TMS.Tests.UI
             LoginPage.TryToLogin(Configurator.Admin);
         }
 
-        [Test]
+        [Test(Description = "Success Add Project"), Order(1)]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Kseniya")]
+        [AllureSuite("PassedSuite")]
+        [AllureSubSuite("SuccessAddProject")]
+        [AllureIssue("TMS-1")]
+        [AllureTms("TMS-2")]
+        [AllureTag("Smoke")]
+        [AllureLink("https://teachmeskills.testmo.net/")]
         public void SuccessAddProject()
         {
             Project project = new ProjectBuilder()
@@ -43,7 +53,15 @@ namespace TestMo_TMS.Tests.UI
             Assert.That(newProjects, Is.EqualTo(oldProjects));
         }
 
-        [Test]
+        [Test(Description = "Check Dialog Window"), Order(2)]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Kseniya")]
+        [AllureSuite("PassedSuite")]
+        [AllureSubSuite("CheckDialogWindow")]
+        [AllureIssue("TMS-1")]
+        [AllureTms("TMS-2")]
+        [AllureTag("Smoke")]
+        [AllureLink("https://teachmeskills.testmo.net/")]
         public void CheckDialogWindow()
         {
             var projectsPage = new ProjectsPage(Driver);
@@ -54,7 +72,15 @@ namespace TestMo_TMS.Tests.UI
             Assert.That(projectsPage.WaitDialogWindow(), Is.EqualTo(true));
         }
 
-        [Test]
+        [Test(Description = "CheckBoundaryValues"), Order(3)]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Kseniya")]
+        [AllureSuite("PassedSuite")]
+        [AllureSubSuite("Check Boundary Values")]
+        [AllureIssue("TMS-1")]
+        [AllureTms("TMS-2")]
+        [AllureTag("Smoke")]
+        [AllureLink("https://teachmeskills.testmo.net/")]
         [TestCase("")]
         [TestCase("s")]
         [TestCase("Check 40 symbols. Check 40 symbols. 1234")]
@@ -84,7 +110,15 @@ namespace TestMo_TMS.Tests.UI
             }
         }
 
-        [Test]
+        [Test(Description = "Success Remove Project"), Order(4)]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Kseniya")]
+        [AllureSuite("PassedSuite")]
+        [AllureSubSuite("SuccessRemoveProject")]
+        [AllureIssue("TMS-1")]
+        [AllureTms("TMS-2")]
+        [AllureTag("Smoke")]
+        [AllureLink("https://teachmeskills.testmo.net/")]
         public void SuccessRemoveProject()
         {
             Project project = new ProjectBuilder()
@@ -109,7 +143,15 @@ namespace TestMo_TMS.Tests.UI
             Assert.That(newProjects, Is.EqualTo(oldProjects));
         }
 
-        [Test]
+        [Test(Description = "Check Tooltip"), Order(6)]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Kseniya")]
+        [AllureSuite("PassedSuite")]
+        [AllureSubSuite("CheckTooltip")]
+        [AllureIssue("TMS-1")]
+        [AllureTms("TMS-2")]
+        [AllureTag("Smoke")]
+        [AllureLink("https://teachmeskills.testmo.net/")]
         public void CheckTooltip()
         {
             string expectedMessage = "The project has been marked for deletion and will be removed shortly.";
@@ -130,7 +172,15 @@ namespace TestMo_TMS.Tests.UI
             Assert.That(actualMessage, Is.EqualTo(expectedMessage));
         }
 
-        [Test]
+        [Test(Description = "Check UploadFile"), Order(5)]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Kseniya")]
+        [AllureSuite("PassedSuite")]
+        [AllureSubSuite("CheckUploadFile")]
+        [AllureIssue("TMS-1")]
+        [AllureTms("TMS-2")]
+        [AllureTag("Smoke")]
+        [AllureLink("https://teachmeskills.testmo.net/")]
         public void CheckUploadFile()
         {
             var message = "https://teachmeskills.testmo.net/attachments/view/";

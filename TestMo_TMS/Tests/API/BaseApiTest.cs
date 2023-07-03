@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Allure.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ using TestMo_TMS.Services;
 
 namespace TestMo_TMS.Tests.API
 {
+    [AllureNUnit]
     public class BaseApiTest
     {
         protected ApiClient _apiClient;
