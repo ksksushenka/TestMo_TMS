@@ -1,4 +1,5 @@
 ﻿using Allure.Commons;
+using NLog;
 using NUnit.Allure.Core;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;

@@ -15,9 +15,11 @@ namespace TestMo_TMS.Pages
 
         public LoginPage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl)
         {
+            _logger.Info("The Login page is opened.");
         }
         public LoginPage(IWebDriver driver) : base(driver, false)
         {
+            _logger.Info("The Login page is opened.");
         }
 
         public override bool IsPageOpened()
