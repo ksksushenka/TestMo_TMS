@@ -93,6 +93,15 @@ namespace TestMo_TMS.Pages
             Driver.FindElement(BlockIconBy).Click();
         }
 
+        public void CheckBlockIcon()
+        {
+            while (WaitService.GetVisibleElement(BlockIconBy) != null)
+            {
+                OpenPage();
+                continue;
+            }
+        }
+
         public IList<IWebElement> GetAllProjectsNames()
         {
             return Driver.FindElements(NameInTableBy);
@@ -207,6 +216,7 @@ namespace TestMo_TMS.Pages
         public void DeleteProject(Project project)
         {
             OpenPage();
+            CheckBlockIcon();
             DeleteIconClick(project.Name);
             Checkbox().Click();
             DeleteButton().Click();
