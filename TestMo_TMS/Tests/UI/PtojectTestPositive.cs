@@ -186,7 +186,7 @@ namespace TestMo_TMS.Tests.UI
             var message = "https://teachmeskills.testmo.net/attachments/view/";
             var projectsPage = new ProjectsPage(Driver);
 
-            string image = "C:/Users/kgrebenyuk/Downloads/girl.png";
+            string image = "C:/Users/kgrebenyuk/source/repos/TestMo_TMS/TestMo_TMS/girl.png";
             projectsPage.UploadFile(image);
             projectsPage.GetSrcPath();
             Thread.Sleep(1000);
