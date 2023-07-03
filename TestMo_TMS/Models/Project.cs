@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace TestMo_TMS.Models
@@ -18,8 +20,10 @@ namespace TestMo_TMS.Models
             Summary = summary;
         }
 
-        public string? Name { get; set; } = string.Empty;
-        public string? Summary { get; set; } = string.Empty;
+        [JsonProperty("name")] public string Name { get; set; }
+        [JsonProperty("note")] public string? Summary { get; set; }
+        [JsonProperty("id")] public int Id { get; set; }
+        [JsonProperty("message")] public string Message { get; set; }
 
         protected bool Equals(Project other)
         {

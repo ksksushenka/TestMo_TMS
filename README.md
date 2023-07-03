@@ -18,7 +18,7 @@ UI:
 3. Проверка воспроизведения любого дефекта (не заполнить название проекта и нажать AddProject).
 
 API:
-1. GET
-2. GET
-3. GET
-4. POST
+1. GET api/v1/projects/{project_id} Чтение существующего проекта
+2. GET api/v1/projects/{project_id} Чтение несуществующего проекта
+3. GET api/v1/runs/{run_id} Чтение существующего рана
+4. POST api/v1/projects/{project_id}/automation/runs Добавление рана
