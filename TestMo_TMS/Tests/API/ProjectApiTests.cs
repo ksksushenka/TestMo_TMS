@@ -12,8 +12,11 @@ namespace TestMo_TMS.Tests.API
     {
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public Project expectedProject1 = TestDataHelper.GetTestProject("GetProject.json");
-        public Project expectedProject2 = TestDataHelper.GetTestProject("GetInvalidProject.json");
+        public Project actualRequest = TestDataHelper.GetProjectRequest("GetProjectRequest.json");
+        public ResultProject expectedResponse = TestDataHelper.GetProjectResponse("GetProjectResponse.json");
+
+        public Project actualRequest2 = TestDataHelper.GetProjectRequest("GetInvalidProjectRequest.json");
+        public Project expectedResponse2 = TestDataHelper.GetInvalidProjectResponse("GetInvalidProjectResponse.json");
 
         [Test(Description = "Success Get Project")]
         [AllureSeverity(SeverityLevel.critical)]
@@ -26,14 +29,15 @@ namespace TestMo_TMS.Tests.API
         [AllureLink("https://teachmeskills.testmo.net/")]
         public void SuccessGetProject()
         {
-            var actualProject = _projectService.GetProject(expectedProject1.Id);
+            var actualProject = _projectService.GetProject(actualRequest.Id);
             _logger.Info("Actual Project: " + actualProject);
-            _logger.Info("Expected Project: " + expectedProject1);
+            _logger.Info("Expected Project: " + expectedResponse);
 
             Assert.Multiple(() =>
             {
-                Assert.That(actualProject.Name, Is.EqualTo(expectedProject1.Name));
-                Assert.That(actualProject.Summary, Is.EqualTo(expectedProject1.Summary));
+                Assert.That(actualProject.Result.Id, Is.EqualTo(expectedResponse.Result.Id));
+                Assert.That(actualProject.Result.Name, Is.EqualTo(expectedResponse.Result.Name));
+                Assert.That(actualProject.Result.Note, Is.EqualTo(expectedResponse.Result.Note));
             });
         }
 
@@ -46,14 +50,13 @@ namespace TestMo_TMS.Tests.API
         [AllureTms("TMS-2")]
         [AllureTag("Smoke")]
         [AllureLink("https://teachmeskills.testmo.net/")]
-        public void InvalidGetProject()
+        public void GetInvalidProject()
         {
-            var expectedMessage = "The project does not exist or you do not have the permissions to access it.";
-            var actualProject = _projectService.GetProject(expectedProject2.Id);
+            var actualProject = _projectService.GetInvalidProject(expectedResponse2.Id);
             _logger.Info("Actual Project: " + actualProject);
-            _logger.Info("Expected Project: " + expectedProject2);
+            _logger.Info("Expected Project: " + expectedResponse2);
 
-            Assert.That(actualProject.Message, Is.EqualTo(expectedMessage));
+            Assert.That(actualProject.Message, Is.EqualTo(expectedResponse2.Message));
         }
     }
 }

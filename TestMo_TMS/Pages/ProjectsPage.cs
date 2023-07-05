@@ -209,7 +209,7 @@ namespace TestMo_TMS.Pages
             ProjectButton().Click();
             WaitDialogWindow();
             NameInput().SendKeys(project.Name);
-            SummaryInput().SendKeys(project.Summary);
+            SummaryInput().SendKeys(project.Note);
             AddProjectButton().Click();
         }
 

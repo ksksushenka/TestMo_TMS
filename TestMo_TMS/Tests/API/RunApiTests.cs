@@ -15,8 +15,10 @@ namespace TestMo_TMS.Tests.API
     {
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public Run expectedRun1 = TestDataHelper.GetTestRun("GetRun.json");
-        public Run expectedRun2 = TestDataHelper.AddTestRun("CreateRun.json");
+        public Run actualRequest = TestDataHelper.GetRunRequest("GetRunRequest.json");
+        public ResultRun expectedResponse = TestDataHelper.GetRunResponse("GetRunResponse.json");
+
+        public Run expectedResponse2 = TestDataHelper.AddTestRun("CreateRun.json");
 
         [Test(Description = "Success Get Run")]
         [AllureSeverity(SeverityLevel.critical)]
@@ -29,14 +31,14 @@ namespace TestMo_TMS.Tests.API
         [AllureLink("https://teachmeskills.testmo.net/")]
         public void SuccessGetRun()
         {
-            var actualRun = _runService.GetRun(expectedRun1.Id);
+            var actualRun = _runService.GetRun(actualRequest.Id);
             _logger.Info("Actual Run: " + actualRun);
-            _logger.Info("Expected Run: " + expectedRun1);
+            _logger.Info("Expected Run: " + expectedResponse);
 
             Assert.Multiple(() =>
             {
-                Assert.That(actualRun.Name, Is.EqualTo(expectedRun1.Name));
-                Assert.That(actualRun.ProjectId, Is.EqualTo(expectedRun1.ProjectId));
+                Assert.That(actualRun.Result.Name, Is.EqualTo(expectedResponse.Result.Name));
+                Assert.That(actualRun.Result.Project_Id, Is.EqualTo(expectedResponse.Result.Project_Id));
             });
         }
 
@@ -51,11 +53,11 @@ namespace TestMo_TMS.Tests.API
         [AllureLink("https://teachmeskills.testmo.net/")]
         public void SuccessAddRun()
         {
-            var actualRun = _runService.AddRun(expectedRun2.Name, expectedRun2.Source, expectedRun2.ProjectId);
+            var actualRun = _runService.AddRun(expectedResponse2);
             _logger.Info("Actual Run: " + actualRun);
-            _logger.Info("Expected Run: " + expectedRun2);
+            _logger.Info("Expected Run: " + expectedResponse2);
 
-            Assert.That(actualRun.StatusCode.ToString(), Is.EqualTo("OK"));
+            Assert.That(actualRun.StatusCode.ToString(), Is.EqualTo("Created"));
         }
     }
 }

@@ -1,0 +1,29 @@
+{
+  "result": {
+    "id": 75,
+    "name": "name for create project",
+    "note": "summary for create project",
+    "is_completed": false,
+    "milestone_count": 0,
+    "milestone_active_count": 0,
+    "milestone_completed_count": 0,
+    "run_count": 1,
+    "run_active_count": 1,
+    "run_closed_count": 0,
+    "session_count": 0,
+    "session_active_count": 0,
+    "session_closed_count": 0,
+    "automation_source_count": 1,
+    "automation_source_active_count": 1,
+    "automation_source_retired_count": 0,
+    "automation_run_count": 2,
+    "automation_run_active_count": 0,
+    "automation_run_completed_count": 2,
+    "created_at": "2023-07-02T14:34:49.149Z",
+    "created_by": 1,
+    "updated_at": "2023-07-03T14:07:45.019Z",
+    "updated_by": 1,
+    "completed_at": null
+  },
+  "expands": []
+}

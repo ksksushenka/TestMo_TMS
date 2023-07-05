@@ -14,20 +14,20 @@ namespace TestMo_TMS.Services
         {
         }
 
-        public Project GetProject(int projectId)
+        public ResultProject GetProject(int id)
         {
             var request = new RestRequest(Endpoints.GET_PROJECT)
-                .AddUrlSegment("project_id", projectId);
+                .AddUrlSegment("project_id", id);
 
-            var response = _apiClient.Execute(request);
+            return _apiClient.Execute<ResultProject>(request);
+        }
 
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                var responseData = JObject.Parse(response.Content);
-                return responseData["TestData"].ToObject<Project>();
-            }
+        public Project GetInvalidProject(int id)
+        {
+            var request = new RestRequest(Endpoints.GET_PROJECT)
+                .AddUrlSegment("project_id", id);
 
-            return null;
+            return _apiClient.Execute<Project>(request);
         }
     }
 }

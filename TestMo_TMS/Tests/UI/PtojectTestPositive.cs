@@ -35,7 +35,7 @@ namespace TestMo_TMS.Tests.UI
         {
             Project project = new ProjectBuilder()
                 .SetName("Test Project 1")
-                .SetSummary("Summary for Test Project 1")
+                .SetSummary("Note for Test Project 1")
                 .Build();
 
             var projectsPage = new ProjectsPage(Driver);
