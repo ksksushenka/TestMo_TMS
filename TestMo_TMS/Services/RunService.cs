@@ -17,20 +17,20 @@ namespace TestMo_TMS.Services
         {
         }
 
-        public Run GetRun(int runId)
+        public ResultRun GetRun(int id)
         {
             var request = new RestRequest(Endpoints.GET_RUN)
-                .AddUrlSegment("run_id", runId);
+                .AddUrlSegment("run_id", id);
 
-            return _apiClient.Execute<Run>(request);
+            return _apiClient.Execute<ResultRun>(request); ;
         }
 
-        public RestResponse AddRun(string name, string source , int projectId)
+        public RestResponse AddRun(Run run)
         {
             var request = new RestRequest(Endpoints.ADD_RUN, Method.Post)
-                .AddUrlSegment("project_id", projectId)
+                .AddUrlSegment("project_id", run.Project_Id)
                 .AddHeader("Content-Type", "application/json")
-                .AddBody(name, source);
+                .AddBody(run);
 
             return _apiClient.Execute(request);
         }

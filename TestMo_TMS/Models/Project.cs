@@ -17,17 +17,17 @@ namespace TestMo_TMS.Models
         public Project(string? name, string? summary)
         {
             Name = name;
-            Summary = summary;
+            Note = summary;
         }
 
         [JsonProperty("name")] public string Name { get; set; }
-        [JsonProperty("note")] public string? Summary { get; set; }
+        [JsonProperty("note")] public string Note { get; set; }
         [JsonProperty("id")] public int Id { get; set; }
-        [JsonProperty("message")] public string Message { get; set; }
+        [JsonProperty("message")] public string? Message { get; set; }
 
         protected bool Equals(Project other)
         {
-            return Name == other.Name && Summary == other.Summary;
+            return Name == other.Name && Note == other.Note && Id == other.Id && Message == other.Message;
         }
 
         public override bool Equals(object? obj)
@@ -37,12 +37,12 @@ namespace TestMo_TMS.Models
 
         public override int GetHashCode()
         {
-            return Name.GetHashCode() + Summary.GetHashCode();
+            return Name.GetHashCode() + Note.GetHashCode() + Id.GetHashCode() + Message.GetHashCode();
         }
 
         public override string ToString()
         {
-            return $"Name = {Name} and Summary = {Summary}";
+            return $"Id = {Id} and Name = {Name} and Note = {Note} and Message = {Message}";
         }
 
         public int CompareTo(Project other)

@@ -33,7 +33,7 @@ namespace TestMo_TMS.Tests.UI
             string expectedMessage = "The name field is required.";
             Project project = new ProjectBuilder()
                 .SetName("    ")
-                .SetSummary("Summary for Test Project 1")
+                .SetSummary("Note for Test Project 1")
                 .Build();
 
             var projectsPage = new ProjectsPage(Driver);
@@ -86,7 +86,7 @@ namespace TestMo_TMS.Tests.UI
         {
             Project project = new ProjectBuilder()
                 .SetName("")
-                .SetSummary("Summary for Test Project 1")
+                .SetSummary("Note for Test Project 1")
                 .Build();
 
             var projectsPage = new ProjectsPage(Driver);

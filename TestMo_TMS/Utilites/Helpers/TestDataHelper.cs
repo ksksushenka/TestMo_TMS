@@ -7,51 +7,40 @@ using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using TestMo_TMS.Models;
 using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace TestMo_TMS.Utilites.Helpers
 {
     public class TestDataHelper
     {
-        public static Project GetTestProject(string FileName)
+        public static Project GetProjectRequest(string FileName)
         {
-            var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var json = File.ReadAllText(basePath + Path.DirectorySeparatorChar + "TestData"
-                                        + Path.DirectorySeparatorChar + FileName);
-            JObject jsonObject = JObject.Parse(json);
-
-            Project project = new Project
-            {
-                Id = (int)jsonObject["id"],
-                Name = (string)jsonObject["name"],
-                Summary = (string?)jsonObject["note"]
-            };
-
-            return project;
+            return JsonHelper.FromJson(FileName).ToObject<Project>();
         }
 
-        public static Run GetTestRun(string FileName)
+        public static ResultProject GetProjectResponse(string FileName)
         {
-            var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var json = File.ReadAllText(basePath + Path.DirectorySeparatorChar + "TestData"
-                                        + Path.DirectorySeparatorChar + FileName);
-            JObject jsonObject = JObject.Parse(json);
+            return JsonHelper.FromJson(FileName).ToObject<ResultProject>();
+        }
 
-            Run run = new Run
-            {
-                Id = (int)jsonObject["id"],
-                ProjectId = (int)jsonObject["project_id"],
-                Name = (string)jsonObject["name"]
-            };
+        public static Project GetInvalidProjectResponse(string FileName)
+        {
+            return JsonHelper.FromJson(FileName).ToObject<Project>();
+        }
 
-            return run;
+        public static Run GetRunRequest(string FileName)
+        {
+            return JsonHelper.FromJson(FileName).ToObject<Run>();
+        }
+
+        public static ResultRun GetRunResponse(string FileName)
+        {
+            return JsonHelper.FromJson(FileName).ToObject<ResultRun>();
         }
 
         public static Run AddTestRun(string FileName)
         {
-            var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var json = File.ReadAllText(basePath + Path.DirectorySeparatorChar + "TestData"
-                                        + Path.DirectorySeparatorChar + FileName);
-            return JsonHelper.FromJson(json).ToObject<Run>();
+            return JsonHelper.FromJson(FileName).ToObject<Run>();
         }
     }
 }

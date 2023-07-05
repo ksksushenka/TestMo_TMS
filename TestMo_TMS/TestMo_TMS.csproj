@@ -15,9 +15,12 @@
     <None Remove="girl.png" />
     <None Remove="NLog.config" />
     <None Remove="TestData\CreateRun.json" />
-    <None Remove="TestData\GetInvalidProject.json" />
-    <None Remove="TestData\GetProject.json" />
-    <None Remove="TestData\GetRun.json" />
+    <None Remove="TestData\GetInvalidProjectRequest.json" />
+    <None Remove="TestData\GetInvalidProjectResponse.json" />
+    <None Remove="TestData\GetProjectRequest.json" />
+    <None Remove="TestData\GetProjectResponse.json" />
+    <None Remove="TestData\GetRunRequest.json" />
+    <None Remove="TestData\GetRunResponse.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,13 +39,22 @@
     <Content Include="TestData\CreateRun.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\GetInvalidProject.json">
+    <Content Include="TestData\GetInvalidProjectRequest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\GetProject.json">
+    <Content Include="TestData\GetInvalidProjectResponse.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\GetRun.json">
+    <Content Include="TestData\GetProjectRequest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\GetProjectResponse.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\GetRunRequest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\GetRunResponse.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
