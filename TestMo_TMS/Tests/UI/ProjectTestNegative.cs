@@ -37,10 +37,11 @@ namespace TestMo_TMS.Tests.UI
                 .Build();
 
             var projectsPage = new ProjectsPage(Driver);
+            var projectModalWindow = new ProjectModalWindow(Driver);
 
             projectsPage.CreateProject(project);
-            projectsPage.WaitRequiredNameMessage();
-            string actualMessage = projectsPage.GetRequiredNameMessage();
+            projectModalWindow.WaitRequiredNameMessage();
+            string actualMessage = projectModalWindow.GetRequiredNameMessage();
 
             Assert.That(actualMessage, Is.EqualTo(expectedMessage));
         }
@@ -60,16 +61,17 @@ namespace TestMo_TMS.Tests.UI
             var actualSummary = "Check 81 symbols. Check 81 symbols. Check 81 symbols. Check 81 symbols. !@#$%^&*1";
 
             var projectsPage = new ProjectsPage(Driver);
+            var projectModalWindow = new ProjectModalWindow(Driver);
 
             projectsPage.OpenPage();
             projectsPage.ProjectButton().Click();
-            projectsPage.WaitDialogWindow();
-            projectsPage.SummaryInput().SendKeys(actualSummary);
+            projectModalWindow.WaitDialogWindow();
+            projectModalWindow.SummaryInput().SendKeys(actualSummary);
 
             Assert.Multiple(() =>
             {
-                Assert.That(projectsPage.GetSummaryInDialog().Length, Is.EqualTo(80));
-                Assert.That(projectsPage.GetSummaryInDialog(), Is.EqualTo(expectedSummary));
+                Assert.That(projectModalWindow.GetSummaryInDialog().Length, Is.EqualTo(80));
+                Assert.That(projectModalWindow.GetSummaryInDialog(), Is.EqualTo(expectedSummary));
             });
         }
 
