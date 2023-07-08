@@ -28,12 +28,6 @@ namespace TestMo_TMS.Core
             }
         }
 
-        public IAlert GetAlertOnPage()
-        {
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
-            return _wait.Until(ExpectedConditions.AlertIsPresent());
-        }
-
         public IWebElement ExistsElement(By by)
         {
             var fluentWait = new DefaultWait<IWebDriver?>(_driver);

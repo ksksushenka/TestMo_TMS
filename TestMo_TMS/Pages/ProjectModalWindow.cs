@@ -18,10 +18,10 @@ namespace TestMo_TMS.Pages
         private static readonly By AddProjectButtonBy = By.CssSelector("button.ui.button.primary");
         private static readonly By SelectButtonBy = By.CssSelector("button.ui.compact.fluid.button");
         private static readonly By UploadFileBy = By.CssSelector("input[type=\"file\"]");
-        private static readonly By CheckboxBy = By.CssSelector("label");
-        private static readonly By DeleteButtonBy = By.CssSelector("button.ui.negative.button");
+        private static readonly By CheckboxBy = By.CssSelector("[data-target=\"confirmationLabel\"]");
+        private static readonly By DeleteButtonBy = By.CssSelector("[data-target=\"deleteButton\"]");
         private static readonly By UploadedImageBy = By.XPath("//div/div/img");
-        private static readonly By RequiredNameMessageBy = By.CssSelector(".message-block > ul:nth-child(1) > li:nth-child(1)");
+        private static readonly By RequiredNameMessageBy = By.ClassName("message-block");
 
         public ProjectModalWindow(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl)
         {

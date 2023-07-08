@@ -16,7 +16,7 @@ namespace TestMo_TMS.Clients
             var options = new RestClientOptions(Configurator.AppSettings.URL)
             {
                 Authenticator = new JwtAuthenticator(Configurator.Admin.Token),
-                ThrowOnAnyError = true,
+                ThrowOnAnyError = false,
                 MaxTimeout = 10000
             };
 
