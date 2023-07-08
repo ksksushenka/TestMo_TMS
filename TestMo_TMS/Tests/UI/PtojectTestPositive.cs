@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using TestMo_TMS.Models;
 using TestMo_TMS.Pages;
 using TestMo_TMS.Utilites.Configuration;
+using TestMo_TMS.Utilites.Helpers;
 
 namespace TestMo_TMS.Tests.UI
 {
@@ -167,9 +168,9 @@ namespace TestMo_TMS.Tests.UI
 
             projectsPage.CreateProject(project);
             projectsPage.DeleteProject(project);
-            Thread.Sleep(5000);
+            projectsPage.WaitBlockIcon();
             projectsPage.ClickBlockIcon();
-            Thread.Sleep(1000);
+            projectsPage.WaitTooltip();
             string actualMessage = projectsPage.GetTooltipText();
             
             Assert.That(actualMessage, Is.EqualTo(expectedMessage));
@@ -189,7 +190,7 @@ namespace TestMo_TMS.Tests.UI
             var message = "https://teachmeskills.testmo.net/attachments/view/";
             var projectModalWindow = new ProjectModalWindow(Driver);
 
-            string image = "C:/Users/kgrebenyuk/source/repos/TestMo_TMS/TestMo_TMS/girl.png";
+            string image = JsonHelper.GetBasePath() + Path.DirectorySeparatorChar + "girl.png";
             projectModalWindow.UploadFile(image);
             projectModalWindow.GetSrcPath();
             Thread.Sleep(1000);

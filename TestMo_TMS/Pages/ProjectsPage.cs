@@ -13,7 +13,7 @@ namespace TestMo_TMS.Pages
         private static string END_POINT = "admin/projects";
 
         private static readonly By ProjectButtonBy = By.CssSelector("button.ui.button");
-        private static readonly By DeleteIconBy = By.XPath("//td[4]");
+        private static readonly By DeleteIconBy = By.CssSelector("[data-action=\"delete\"]");
         private static readonly By BlockIconBy = By.CssSelector("i.fas.fa-ban.icon-deleted-entity");
         private static readonly By DeleteTooltipBy = By.CssSelector("div.popup__tooltip__content");
         private static readonly By NameInTableBy = By.XPath("//a[@data-action=\"edit\"]");
@@ -56,6 +56,16 @@ namespace TestMo_TMS.Pages
                 OpenPage();
                 continue;
             }
+        }
+
+        public bool WaitBlockIcon()
+        {
+            return WaitService.ExistsElement(BlockIconBy) != null;
+        }
+
+        public bool WaitTooltip()
+        {
+            return WaitService.ExistsElement(DeleteTooltipBy) != null;
         }
 
         public IList<IWebElement> GetAllProjectsNames()
