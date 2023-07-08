@@ -65,11 +65,12 @@ namespace TestMo_TMS.Tests.UI
         public void CheckDialogWindow()
         {
             var projectsPage = new ProjectsPage(Driver);
+            var projectModalWindow = new ProjectModalWindow(Driver);
 
             projectsPage.OpenPage();
             projectsPage.ProjectButton().Click();
             
-            Assert.That(projectsPage.WaitDialogWindow(), Is.EqualTo(true));
+            Assert.That(projectModalWindow.WaitDialogWindow(), Is.EqualTo(true));
         }
 
         [Test(Description = "CheckBoundaryValues"), Order(3)]
@@ -90,22 +91,23 @@ namespace TestMo_TMS.Tests.UI
         {
             var expectedSummary = "Check 81 symbols. Check 81 symbols. Check 81 symbols. Check 81 symbols. !@#$%^&*";
             var projectsPage = new ProjectsPage(Driver);
+            var projectModalWindow = new ProjectModalWindow(Driver);
 
             projectsPage.OpenPage();
             projectsPage.ProjectButton().Click();
-            projectsPage.WaitDialogWindow();
-            projectsPage.SummaryInput().SendKeys(summary);
+            projectModalWindow.WaitDialogWindow();
+            projectModalWindow.SummaryInput().SendKeys(summary);
 
             if (summary.Length <= 80)
             {
-                Assert.That(projectsPage.GetSummaryInDialog(), Is.EqualTo(summary));
+                Assert.That(projectModalWindow.GetSummaryInDialog(), Is.EqualTo(summary));
             }
             else
             {
                 Assert.Multiple(() =>
                 {
-                    Assert.That(projectsPage.GetSummaryInDialog().Length, Is.EqualTo(80));
-                    Assert.That(projectsPage.GetSummaryInDialog(), Is.EqualTo(expectedSummary));
+                    Assert.That(projectModalWindow.GetSummaryInDialog().Length, Is.EqualTo(80));
+                    Assert.That(projectModalWindow.GetSummaryInDialog(), Is.EqualTo(expectedSummary));
                 });
             }
         }
@@ -133,7 +135,7 @@ namespace TestMo_TMS.Tests.UI
             projectsPage.CreateProject(project);
             Thread.Sleep(1000);
             projectsPage.DeleteProject(project);
-            Thread.Sleep(15000);
+            projectsPage.CheckBlockIcon();
 
             List<Project> newProjects = projectsPage.GetProjectsList();
             oldProjects.Remove(project);
@@ -165,8 +167,9 @@ namespace TestMo_TMS.Tests.UI
 
             projectsPage.CreateProject(project);
             projectsPage.DeleteProject(project);
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             projectsPage.ClickBlockIcon();
+            Thread.Sleep(1000);
             string actualMessage = projectsPage.GetTooltipText();
             
             Assert.That(actualMessage, Is.EqualTo(expectedMessage));
@@ -184,14 +187,14 @@ namespace TestMo_TMS.Tests.UI
         public void CheckUploadFile()
         {
             var message = "https://teachmeskills.testmo.net/attachments/view/";
-            var projectsPage = new ProjectsPage(Driver);
+            var projectModalWindow = new ProjectModalWindow(Driver);
 
             string image = "C:/Users/kgrebenyuk/source/repos/TestMo_TMS/TestMo_TMS/girl.png";
-            projectsPage.UploadFile(image);
-            projectsPage.GetSrcPath();
+            projectModalWindow.UploadFile(image);
+            projectModalWindow.GetSrcPath();
             Thread.Sleep(1000);
 
-            var srcPath = projectsPage.GetSrcPath().StartsWith(message);
+            var srcPath = projectModalWindow.GetSrcPath().StartsWith(message);
 
             Assert.That(srcPath, Is.EqualTo(true));
         }
